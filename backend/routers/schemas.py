@@ -39,4 +39,9 @@ class PostDisplay(BaseModel):
     user: User
     
     model_config = ConfigDict(from_attributes=True)
-    
+
+
+class UserAuth(BaseModel):
+    id:int
+    username:str
+    email:str
