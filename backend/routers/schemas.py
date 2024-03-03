@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from pydantic import ConfigDict
 from datetime import datetime
+from typing import List
 
 class UserBase(BaseModel):
     username:str
@@ -19,6 +20,18 @@ class UserDisplay(BaseModel):
 #for post display    
 class User(BaseModel):
     username:str
+    
+    model_config = ConfigDict(from_attributes=True)
+
+
+#for PostDisplay
+class Comment(BaseModel):
+    text:str
+    username:str
+    timestamp:datetime
+    
+    model_config = ConfigDict(from_attributes=True)
+    
 
     
     
@@ -37,6 +50,7 @@ class PostDisplay(BaseModel):
     caption:str
     timestamp:datetime
     user: User
+    comments :List[Comment]
     
     model_config = ConfigDict(from_attributes=True)
 
@@ -45,3 +59,10 @@ class UserAuth(BaseModel):
     id:int
     username:str
     email:str
+    
+    
+    
+class CommentBase(BaseModel):
+    username:str
+    text:str
+    post_id:int
