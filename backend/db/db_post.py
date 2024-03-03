@@ -30,7 +30,7 @@ def delete_post(db: Session, id: int, user_id: int):
     post = db.execute(stmt).scalar_one_or_none()
     if not post:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, detail="Post is not exi"
+            status_code=status.HTTP_404_NOT_FOUND, detail="Post is not exist"
         )
 
     if post.user_id != user_id:
