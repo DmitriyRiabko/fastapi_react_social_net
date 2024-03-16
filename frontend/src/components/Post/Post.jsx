@@ -1,22 +1,10 @@
+import { useQuery } from "@tanstack/react-query";
 import styles from "./Post.module.scss";
-import { useState, useEffect } from "react";
 import { FaUserCircle } from "react-icons/fa";
+import { postService } from "../../services/post.service";
 
 export default function Post({ post }) {
-  const [imageUrl, setImageUrl] = useState("");
-  const [comments, setComments] = useState([]);
-
-  useEffect(() => {
-    if (post.image_url_type == "absolute") {
-      setImageUrl(post.image_url);
-    } else {
-      setImageUrl("http://localhost:5555/" + post.image_url);
-    }
-  }, []);
-
-  useEffect(() => {
-    setComments(post.comments);
-  });
+  const imageUrl = postService.getPostImage(post?.image_url,post?.image_url_type)
 
   return (
     <div className={styles.post}>
@@ -32,8 +20,8 @@ export default function Post({ post }) {
       <div className={styles.info_container}>
         <h4 className={styles.post_caption}>{post.caption}</h4>
         <div className={styles.post_comments}>
-          {comments.map((comment) => (
-            <div>
+          {post.comments.map((comment,id) => (
+            <div key={id}>
               <span
                 className={styles.comment_creator}
               >{`${comment.username}:`}</span>
