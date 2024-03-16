@@ -7,31 +7,36 @@
     background-color: rgb(20, 20, 20);
 
 
+
+    
+
     .header{
         padding: 10px;
         display: flex;
         align-items: center;
+        justify-content: space-between;
         width: 100%;
         
+       
 
-        h4{
-            margin-left: 5px;
+            h4{
+                margin-left: 5px;
+            }
+
+
+            .delete{
+                outline: none;
+                border: none;
+                margin-left: auto;
+                color: rgb(125, 24, 24);
+                font-weight: 400;
+                font-size: 15px;
+                background: inherit;
+                cursor: pointer;
+                
+            }
+        
         }
-
-
-        .delete{
-            outline: none;
-            border: none;
-            margin-left: auto;
-            color: rgb(125, 24, 24);
-            font-weight: 400;
-            font-size: 15px;
-            background: inherit;
-            cursor: pointer;
-            
-        }
-    }
-
     
 
     .image_container{
