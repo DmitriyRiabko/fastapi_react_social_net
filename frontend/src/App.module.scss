@@ -8,6 +8,7 @@
 
 .app{
   background: linear-gradient(9deg, rgba(12,10,47,1) 42%, rgba(59,3,99,1) 100%);
+  background-attachment: fixed;
   width: 100%;
   min-height: 100vh;
   display: flex;
