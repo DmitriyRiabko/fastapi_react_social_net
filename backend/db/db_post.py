@@ -1,5 +1,5 @@
 from sqlalchemy.orm.session import Session
-from sqlalchemy import select
+from sqlalchemy import desc, select
 from fastapi import HTTPException, status
 
 
@@ -21,7 +21,7 @@ def create(db: Session, request: PostBase):
 
 
 def get_all(db: Session):
-    res = db.execute(select(Post)).scalars().all()
+    res = db.execute(select(Post).order_by(desc(Post.timestamp))).scalars().all()
     return res
 
 
