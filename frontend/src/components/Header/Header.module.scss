@@ -1,0 +1,42 @@
+
+
+
+
+.header{
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 10px 0px;
+    margin-bottom: 20px;
+    width: 100%;
+    
+    overflow: hidden;
+   
+
+
+    &::after{
+        content: ' ';
+        position: absolute;
+        left: 0 ;
+        top: 0;
+        height: auto;
+        width: 100%;
+        z-index: 9;
+        background-attachment:fixed;
+        background: linear-gradient(-9deg, rgba(12,10,47,1) 4%, rgba(59,3,99,1) 90%); 
+    }
+    
+    border-radius: 10px;
+
+    .title{
+        text-wrap: wrap;
+        text-transform: uppercase;
+        color: rgb(216, 222, 226);
+        line-height: 30px;
+
+        &:hover{
+            color: #fff;
+            transition: color 0.5s ease;
+        }
+    }
+}
