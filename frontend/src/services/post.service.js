@@ -1,23 +1,27 @@
 import axios from "axios";
+import { API_URL } from "../../config";
 
+class PostService {
+  constructor() {
+    this.apiClient = axios.create({
+      baseURL: API_URL,
+    });
+  }
 
-class PostService{
-    constructor(){
-        this.apiClient = axios.create({
-            baseURL:'http://localhost:5555',
-           
-        })
-        
+  async getAllPosts() {
+    const { data } = await this.apiClient.get("/post/all");
+    return data;
+  }
+
+  getPostImage(imageUrl, imageType) {
+    
+    if (imageType == "relative") {
+      return `${API_URL}/${imageUrl}`;
+     
+    } else {
+      return imageUrl;
     }
-
-
-    async  getAllPosts(){
-        const {data} =  await this.apiClient.get('/post/all')
-        console.log(data);
-        return data
-    }
+  }
 }
 
-
-
-export const postService = new PostService()
+export const postService = new PostService();
