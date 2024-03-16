@@ -21,7 +21,7 @@ app.include_router(comment.router)
 
 
 origins = [
-    'http://localhost:3000'
+    'http://localhost:5173'
 ]
 
 
