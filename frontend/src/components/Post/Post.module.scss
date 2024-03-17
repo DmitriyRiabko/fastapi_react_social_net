@@ -8,6 +8,12 @@
 
 
 
+    .user{
+        display: flex;
+        align-items: center;
+    }
+
+
     
 
     .header{
@@ -77,9 +83,9 @@
 
 
             }
-            .comment_text{
+            // .comment_text{
 
-            }
+            // }
         }
 }
 }

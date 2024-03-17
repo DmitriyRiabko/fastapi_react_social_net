@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { Modal, Box, Button, Input } from "@mui/material";
-import { useSignInStore } from "../../store/popup";
+import { useSignUpStore } from "../../store/popup";
 import { useForm } from "react-hook-form";
 import { authService } from "../../services/auth.service";
 import { useMutation } from "@tanstack/react-query";
-import styles from "./SignInWindow.module.scss";
+import styles from "./SignUpWindow.module.scss";
 import { Tent } from "lucide-react";
 import { useAuthUser } from "../../store/user";
-
 
 const style = {
   position: "absolute",
@@ -18,34 +17,48 @@ const style = {
   bgcolor: "background.paper",
   boxShadow: 24,
   p: 4,
-  borderRadius:'10px'
+  borderRadius: "10px",
 };
 
-export default function SignInWindow() {
+export default function SignUpWindow() {
+  const { isOpen, setClose } = useSignUpStore();
+  const {setAuth} = useAuthUser()
 
-  const setAuth = useAuthUser(state=>state.setAuth)
+  const {
+    register,
+    getValues,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
 
-  const { isOpen, setClose } = useSignInStore();
-
-  const {register,handleSubmit,reset,formState: { errors }} = useForm();
-
-  const {mutate, error, isError} = useMutation({
+  const loginMutation = useMutation({
     mutationFn: (formData) => authService.signIn(formData),
-    onSuccess: (data) => {setAuth(data),setClose(),reset()},
+  });
+
+  const { mutate, error, isError } = useMutation({
+    mutationFn: (formData) => authService.signUp(formData),
+    onSuccess: (data) => {
+      const { email, ...loginData } = getValues();
+      loginMutation.mutate(loginData);
+      setClose(), reset(), setAuth(data);
+    },
   });
 
   const sendFormData = (data) => {
-    const formData = new FormData();
-    formData.append("username", data.username);
-    formData.append("password", data.password);
-    mutate(formData);
+    mutate(data);
   };
 
   return (
-    <Modal open={isOpen} onClose={() => {reset(),setClose()}}>
+    <Modal
+      open={isOpen}
+      onClose={() => {
+        reset(), setClose();
+      }}
+    >
       <Box sx={style}>
         <form onSubmit={handleSubmit(sendFormData)} className={styles.form}>
-          <Tent size={40}/>
+          <Tent size={40} />
           <Input
             {...register("username", {
               required: "Required Field",
@@ -53,7 +66,21 @@ export default function SignInWindow() {
             placeholder="Username"
             className={styles.email}
           />
-          {errors.username && <div className={styles.error}>{errors.username.message}</div>}
+          {errors.username && (
+            <div className={styles.error}>{errors.username.message}</div>
+          )}
+
+          <Input
+            type="email"
+            {...register("email", {
+              required: "Required Field",
+            })}
+            placeholder="Email"
+            className={styles.password}
+          />
+          {errors.email && (
+            <div className={styles.error}>{errors.email.message}</div>
+          )}
 
           <Input
             type="password"
@@ -63,7 +90,9 @@ export default function SignInWindow() {
             placeholder="Password"
             className={styles.password}
           />
-          {errors.password && <div className={styles.error}>{errors.password.message}</div>}
+          {errors.password && (
+            <div className={styles.error}>{errors.password.message}</div>
+          )}
 
           {isError && (
             <div style={{ color: "red" }}>
@@ -73,7 +102,7 @@ export default function SignInWindow() {
           )}
 
           <Button type="submit" variant="outlined" className={styles.submit}>
-            Enter
+            Register
           </Button>
         </form>
       </Box>

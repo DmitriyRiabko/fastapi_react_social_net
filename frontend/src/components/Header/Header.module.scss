@@ -37,12 +37,38 @@
 
     .buttons_block{
 
+        color: white;
+
+        display: flex;
+        align-items: center;
+
+        .icon{
+            margin-right: 10px;
+        }
+
+        .user{
+            margin-right: 10px;
+        }
+
         .signIn{
             margin-right: 10px;
         }
 
         .signUp{
             
+        }
+
+
+        .logout{
+            color: rgb(224, 43, 43);
+            border:1px solid red;
+        }
+
+
+        .newPost_btn{
+            margin-right: 20px;
+            color: rgb(155, 212, 97);
+            cursor: pointer;
         }
     }
 }
