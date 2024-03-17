@@ -18,7 +18,7 @@ router = APIRouter(prefix="/post", tags=["post"])
 image_url_type = ["absolute", "relative"]
 
 
-@router.post("/", response_model=PostDisplay)
+@router.post("", response_model=PostDisplay)
 def create(
     request: PostBase,
     db: Session = Depends(get_db),
