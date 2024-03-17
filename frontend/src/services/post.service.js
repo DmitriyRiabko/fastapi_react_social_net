@@ -25,6 +25,15 @@ class PostService {
     return data;
   }
 
+  async createPost(inputData, token) {
+    const { data } = await this.apiClient.post("/post" ,inputData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return data;
+  }
+
   getPostImage(imageUrl, imageType) {
     if (imageType == "relative") {
       return `${API_URL}/${imageUrl}`;
