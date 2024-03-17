@@ -16,6 +16,12 @@ class AuthService {
     });
     return data;
   }
+
+  
+  async signUp(inputData) {
+    const { data } = await this.apiClient.post("/user", inputData);
+    return data;
+  }
 }
 
 export const authService = new AuthService();
