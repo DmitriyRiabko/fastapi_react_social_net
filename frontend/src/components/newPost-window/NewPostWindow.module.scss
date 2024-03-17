@@ -1,0 +1,36 @@
+
+
+
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    .caption{
+        margin-top: 20px;
+        height: 30px;
+        width: 100%;
+        margin-top: 20px;
+
+
+    }
+    .file{
+        height: 30px;
+        width: 100%;
+        margin-top: 20px;
+
+    }
+    .submit{
+        margin-top: 20px;
+        width: 60%;
+    }
+
+
+    .error{
+        color: red;
+        font-size: 0.8rem;
+        align-self: start;
+    }
+
+    
+}
