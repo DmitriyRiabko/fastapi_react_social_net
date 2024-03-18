@@ -1,0 +1,22 @@
+
+
+.form{
+    margin-top: 10px;
+    background-color: rgb(20, 40, 74);
+    border-radius: 5px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    .comment{
+        color: rgb(189, 180, 180);
+        padding-left:10px ;
+        font-weight: 600;
+        width: 100%;
+    }
+
+
+    .submit{
+        width: fit-content;
+        color: rgb(229, 229, 232);;
+    }
+}
