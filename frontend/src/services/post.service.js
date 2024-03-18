@@ -34,6 +34,26 @@ class PostService {
     return data;
   }
 
+  async deletePost(id, token) {
+    const { data } = await this.apiClient.delete(`/post/${id}` , {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return data;
+  }
+
+  async commentPost(comment, token) {
+    const { data } = await this.apiClient.post(`/comment/` , comment,{
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return data;
+  }
+
+
+
   getPostImage(imageUrl, imageType) {
     if (imageType == "relative") {
       return `${API_URL}/${imageUrl}`;
