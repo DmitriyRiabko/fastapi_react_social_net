@@ -5,15 +5,13 @@
 .header{
     position: sticky;
     top: 0;
-    z-index: 1000;
+    left: 0;
     padding: 10px;
-    margin-bottom: 20px;
-    width: 100%;
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: linear-gradient(-9deg, rgb(78, 41, 126) 4%,rgb(67, 21, 108)); 
-    border-radius: 10px;
+    
 
 
     .title_block{
@@ -47,11 +45,13 @@
         }
 
         .user{
-            margin-right: 10px;
+            margin-right: 20px;
         }
 
         .signIn{
             margin-right: 10px;
+            color: rgb(43, 224, 103);
+            border:1px solid rgb(43, 224, 103);
         }
 
         .signUp{

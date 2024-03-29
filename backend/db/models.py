@@ -15,12 +15,12 @@ class User(Base):
 
 class Post(Base):
     __tablename__ = "posts"
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(Integer, primary_key=True, index=True )
     image_url = Column(String)
     image_url_type = Column(String)
     caption = Column(String)
     timestamp = Column(DateTime)
-    user_id = Column(Integer, ForeignKey("users.id"))
+    user_id = Column(Integer, ForeignKey("users.id", ondelete='cascade'))
     
     user = relationship("User", back_populates="items")
 

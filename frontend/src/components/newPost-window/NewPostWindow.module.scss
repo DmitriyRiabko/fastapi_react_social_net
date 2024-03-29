@@ -2,10 +2,12 @@
 
 
 .form{
+
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
+    
     .caption{
         margin-top: 20px;
         height: 30px;

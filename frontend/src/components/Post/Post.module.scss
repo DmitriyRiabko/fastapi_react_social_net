@@ -3,8 +3,19 @@
 .post{
     margin-bottom: 20px;
     border-radius: 5px;
-    color: rgb(116, 24, 186);
-    background-color: rgb(20, 20, 20);
+    color: rgb(22, 64, 123);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    height: 100%;
+    width: fit-content;
+    transition: all 0.4s ease;
+
+    &:hover{
+        transform: scale(1.05);
+        background-color: rgb(28, 25, 25);
+        z-index: 10;
+
+    }
+
 
 
 
@@ -46,18 +57,21 @@
     
 
     .image_container{
-        max-height: 400px;
-        height: 100%;
-        max-width: 500px;
+        background-color: rgb(11, 11, 11);
+        height: 400px;
+        width: 400px;
         border-radius: 3px;
         overflow: hidden;
+        display: flex;
+        place-items: center;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 
         
 
         .image{
             width: 100%;
             height: auto;
-            object-fit: fill;
+            object-fit: cover;
 
         }
     }
@@ -68,13 +82,14 @@
         padding: 10px;
 
         .post_caption{
-            margin: 10px 0;
+            margin: 5px 0;
             padding-bottom: 5px;
-            border-bottom: 1px solid rgb(35, 3, 72);
+            border-bottom: 2px solid rgb(184, 175, 193);
             font-size: 20px;
         }
 
         .post_comments{
+            margin-left: 5px;
             font-size: 13px;
             .comment_creator{
                 color: rgb(131, 122, 122);

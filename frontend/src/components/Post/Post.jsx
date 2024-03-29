@@ -1,8 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import styles from "./Post.module.scss";
 import { FaUserCircle } from "react-icons/fa";
 import { postService } from "../../services/post.service";
 import { useAuthUser } from "../../store/user";
+import { NewComment } from "../new-comment/NewComment";
 
 export  function Post({ post }) {
   const imageUrl = postService.getPostImage(
@@ -10,7 +11,17 @@ export  function Post({ post }) {
     post?.image_url_type
   );
 
-  const { user } = useAuthUser();
+  const queryClient = useQueryClient()
+
+
+  const { user, isAuth } = useAuthUser();
+
+
+  const {mutate} = useMutation({
+    mutationFn:(id)=> postService.deletePost(id, user.access_token),
+    onSuccess:() =>  queryClient.invalidateQueries(['allPosts'])
+
+  })
 
   
 
@@ -22,7 +33,7 @@ export  function Post({ post }) {
           <h4>{post?.user?.username}</h4>
         </div>
         {user?.username === post?.user?.username && (
-          <button className={styles.delete}>Delete</button>
+          <button className={styles.delete} onClick={()=>mutate(post.id)}>Delete</button>
         )}
       </header>
 
@@ -41,6 +52,7 @@ export  function Post({ post }) {
             </div>
           ))}
         </div>
+        {isAuth && <NewComment post_id = {post.id}/>}
       </div>
     </div>
   );

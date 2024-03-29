@@ -17,13 +17,12 @@ export default function Header() {
 
   const { isAuth, user, logout } = useAuthUser();
 
-  const store = useAuthUser();
 
   return (
     <header className={styles.header}>
       <div className={styles.title_block}>
         <Tent size={28} color="white" />
-        <h1 className={styles.title}>React+FastApi</h1>
+        <h1 className={styles.title}>React + FastApi</h1>
       </div>
       <div className={styles.buttons_block}>
         {isAuth ? (

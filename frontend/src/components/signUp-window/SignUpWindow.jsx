@@ -34,6 +34,7 @@ export default function SignUpWindow() {
 
   const loginMutation = useMutation({
     mutationFn: (formData) => authService.signIn(formData),
+    onSuccess: (data) => { setAuth(data)}
   });
 
   const { mutate, error, isError } = useMutation({
@@ -41,7 +42,7 @@ export default function SignUpWindow() {
     onSuccess: (data) => {
       const { email, ...loginData } = getValues();
       loginMutation.mutate(loginData);
-      setClose(), reset(), setAuth(data);
+      setClose(), reset();
     },
   });
 
